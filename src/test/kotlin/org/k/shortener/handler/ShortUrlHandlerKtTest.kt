@@ -35,9 +35,9 @@ internal class ShortUrlHandlerKtTest(private val webClient: WebTestClient) : Fun
                 .accept(MediaType.APPLICATION_JSON)
                 .bodyValue(CreateShortUrlDto("http://www.example.com"))
                 .exchange()
-                .expectBody<CreateShortUrlDto>()
+                .expectBody<ShortUrlDto>()
                 .value {
-                    it shouldBe CreateShortUrlDto("http://www.example.com")
+                    it shouldBe ShortUrlDto("http://www.example.com")
                 }
         }
     }
