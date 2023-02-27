@@ -8,6 +8,10 @@ fun Id<UUID>.toBase62(): String = value
     .toBigInteger()
     .toBase62()
 
+fun UUID.toBase62(): String = this
+    .toBigInteger()
+    .toBase62()
+
 fun UUID.toBigInteger(): BigInteger = ByteBuffer.wrap(ByteArray(16))
     .apply { putLong(this@toBigInteger.mostSignificantBits) }
     .apply { putLong(this@toBigInteger.leastSignificantBits) }
