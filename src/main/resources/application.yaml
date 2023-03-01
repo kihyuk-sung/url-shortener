@@ -1,0 +1,8 @@
+spring:
+  r2dbc:
+    url: "r2dbc:mariadb://localhost:3306/tigerdb"
+    name: tigerdb
+    username: scott
+    password: tiger
+    pool:
+      enabled: true
