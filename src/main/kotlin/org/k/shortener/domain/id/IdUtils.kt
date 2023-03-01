@@ -12,11 +12,21 @@ fun UUID.toBase62(): String = this
     .toBigInteger()
     .toBase62()
 
-fun UUID.toBigInteger(): BigInteger = ByteBuffer.wrap(ByteArray(16))
-    .apply { putLong(this@toBigInteger.mostSignificantBits) }
-    .apply { putLong(this@toBigInteger.leastSignificantBits) }
+fun UUID.toByteArray(): ByteArray = ByteBuffer.wrap(ByteArray(16))
+    .apply { putLong(this@toByteArray.mostSignificantBits) }
+    .apply { putLong(this@toByteArray.leastSignificantBits) }
     .array()
+
+fun UUID.toBigInteger(): BigInteger = this
+    .toByteArray()
     .let(::BigInteger)
+
+fun ByteArray.toUUID(): UUID = ByteBuffer.wrap(this)
+    .let {
+        val high = it.long
+        val low = it.long
+        UUID(high, low)
+    }
 
 fun BigInteger.toBase62(): String = this.toBase62(mutableListOf())
 
